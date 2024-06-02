@@ -3,6 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 // Define the interface for a user
 export interface IUser {
+    id: string;
     name: string;
     email: string;
 }
@@ -14,11 +15,21 @@ export const usersSlice = createSlice({
     name: "users",
     initialState,
     reducers: {
+        // Add a single user to the array
         addUser: (state, action: PayloadAction<IUser>) => {
-            state.push(action.payload);
+            const user = action.payload;
+            if (!state.find(u => u.id === user.id)) {
+                state.push(user);
+            }
         },
+        // Add multiple users to the array
         addUsers: (state, action: PayloadAction<IUser[]>) => {
-            state.push(...action.payload);
+            const usersToAdd = action.payload;
+            usersToAdd.forEach(user => {
+                if (!state.find(u => u.id === user.id)) {
+                    state.push(user);
+                }
+            });
         },
         removeUser: (state, action: PayloadAction<number>) => {
             return state.filter((_, index) => index !== action.payload);

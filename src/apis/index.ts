@@ -73,7 +73,8 @@ export const cart = {
 };
 
 export const user = {
-  getAllUsers: () => getRequest('/users/fetch-user-data')
+  getAllUsers: () => getRequest('/users/fetch-user-data'),
+  addNewUser: (payload: any) => postRequest('/users/create-user-data', payload)
 }
 
 
