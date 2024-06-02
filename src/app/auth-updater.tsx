@@ -3,24 +3,21 @@
 import { setAuthState } from "@/redux/authSlice";
 import { useAppDispatch } from "@/redux/store";
 import React from "react";
+import Button from '@mui/material/Button';
 
 const AuthUpdater = () => {
     const dispatch = useAppDispatch();
 
     return (
-        <div className="flex gap-4 border border-1 border-black p-20">
-            <button
-                className="p-4 border border-1 border-black hover:bg-gray-300"
+        <div className="">
+            <Button variant="contained"
                 onClick={() => dispatch(setAuthState(true))}
-            >
-                Log in
-            </button>
-            <button
-                className="p-4 border border-1 border-black hover:bg-gray-300"
+            >    Log in
+            </Button>
+            <Button variant="contained"
                 onClick={() => dispatch(setAuthState(false))}
-            >
-                Log out
-            </button>
+            >     Log out
+            </Button>
         </div>
     );
 };
