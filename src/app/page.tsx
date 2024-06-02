@@ -1,22 +1,14 @@
-import { useSelector, useDispatch } from "react-redux";
-import { setItemsInCart,getItemsInCart } from "./redux/cartSlice";
-
+"use client";
+import ReduxProvider from "@/redux/redux-provider";
+import AuthUpdater from "./auth-updater";
+import AuthViewer from "./auth-viewer";
 export default function Home() {
-  const itemsInCart: any = useSelector(getItemsInCart);
-  const dispatch = useDispatch();
-
-  const addItemsToCart = () => {
-    dispatch(setItemsInCart(parseInt(itemsInCart) + 1))
-  }
-
   return (
-    <>
-      <h2>
-        Items in Cart : {itemsInCart}
-      </h2>
-      <button value="Add" type="button" onClick={addItemsToCart}>
-        Add
-      </button>
-    </>
-  )
+    <ReduxProvider>
+      <main className="w-full h-screen grid grid-cols-2 place-items-center">
+        <AuthUpdater />
+        <AuthViewer />
+      </main>
+    </ReduxProvider>
+  );
 }
