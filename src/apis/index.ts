@@ -74,7 +74,8 @@ export const cart = {
 
 export const user = {
   getAllUsers: () => getRequest('/users/fetch-user-data'),
-  addNewUser: (payload: any) => postRequest('/users/create-user-data', payload)
+  addNewUser: (payload: any) => postRequest('/users/create-user-data', payload),
+  editUser: (payload: any, id: string) => putRequest(`/users/update-user-data/${id}`, payload),
 }
 
 

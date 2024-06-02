@@ -1,9 +1,9 @@
 import { setLoadingState } from "@/redux/loadingSlice";
+import { addUsers } from "@/redux/usersSlice";
 import { useAppDispatch } from "@/redux/store";
 import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import { user } from "@/apis";
-import { addUsers } from "@/redux/usersSlice";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
