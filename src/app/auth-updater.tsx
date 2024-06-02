@@ -1,20 +1,18 @@
-"use client";
-
-import { setAuthState } from "@/redux/authSlice";
+import { setLoadingState } from "@/redux/loadingSlice";
 import { useAppDispatch } from "@/redux/store";
 import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import { user } from "@/apis";
+import Typography from '@mui/material/Typography';
+import { addUsers } from "@/redux/usersSlice";
 
 const AuthUpdater = () => {
-    const [usersListData, setUsersListData] = useState([])
-
     const dispatch = useAppDispatch();
 
     const handleGetAllUsers = () => {
         try {
             user.getAllUsers().then((res: any) => {
-                setUsersListData(res.data)
+                dispatch(addUsers(res.data))
             })
         }
         catch (err) {
@@ -25,21 +23,23 @@ const AuthUpdater = () => {
     return (
         <div className="">
             <Button variant="contained"
-                onClick={() => dispatch(setAuthState(true))}
+                onClick={() => dispatch(setLoadingState(true))}
             >    Log in
             </Button>
             <Button variant="contained"
-                onClick={() => dispatch(setAuthState(false))}
+                onClick={() => dispatch(setLoadingState(false))}
             >     Log out
             </Button>
             <Button variant="contained"
                 onClick={() => handleGetAllUsers()}
-            >     Get ALl DAta
+            >     Get All DAta
             </Button>
-
-            {usersListData.map((eachCategory: any) => (
-                <div key={eachCategory}>{eachCategory.name}</div>
-            ))}
+            <Typography variant="body1" >
+                body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
+                blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
+                neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
+                quasi quidem quibusdam.
+            </Typography>
         </div>
     );
 };

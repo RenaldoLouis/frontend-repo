@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
-import { store } from "./index";
 import { persistStore } from "redux-persist";
+import { store } from "./store";
 
 persistStore(store);
 const ReduxProvider = ({ children }: { children: React.ReactNode; }) => {

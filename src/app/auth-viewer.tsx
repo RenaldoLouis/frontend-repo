@@ -2,13 +2,23 @@
 
 import { useAppSelector } from "@/redux/store";
 import React from "react";
+import Typography from '@mui/material/Typography';
 
 const AuthViewer = () => {
-    const authState = useAppSelector((state) => state.auth.authState);
-
+    const loadingState = useAppSelector((state) => state.loading.loadingState);
+    const usersState = useAppSelector((state) => state.users);
     return (
-        <div className="">
-            You are now {authState ? "Logged  In" : "Logged Out"}
+        <div>
+            <div className="">
+                You are now {loadingState ? "Logged  In" : "Logged Out"}
+            </div>
+
+            {usersState.map((eachCategory: any) => (
+                <Typography key={eachCategory} variant="body1" >
+                    {eachCategory.name}
+                </Typography>
+            ))}
+
         </div>
     );
 };
