@@ -12,9 +12,14 @@ const AuthUpdater = () => {
     const dispatch = useAppDispatch();
 
     const handleGetAllUsers = () => {
-        user.getAllUsers().then((res: any) => {
-            setUsersListData(res.data)
-        })
+        try {
+            user.getAllUsers().then((res: any) => {
+                setUsersListData(res.data)
+            })
+        }
+        catch (err) {
+            console.error(err)
+        }
     }
 
     return (
