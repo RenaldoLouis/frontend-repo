@@ -52,26 +52,6 @@ const deleteRequest = async (path: string, payload?: any): Promise<any> => {
   }
 };
 
-export const auth = {
-  login: (payload: any) => postRequest('/auth/login', payload)
-}
-
-export const product = {
-  getAllProducts: () => getRequest('/products'),
-  getProductByCategory: (category: string) => getRequest(`/products/category/${category}`),
-  deleteProductById: (itemId: any) => deleteRequest(`/products/${itemId}`),
-};
-
-export const categories = {
-  getAllCategories: () => getRequest('/products/categories'),
-};
-
-export const cart = {
-  getAllCarts: () => getRequest('/carts'),
-  addNewCart: (payload: any) => postRequest('/carts', payload),
-  getCartByDateRange: (startDate: any, endDate: any) => getRequest(`/carts?startdate=${startDate}&enddate=${endDate}`),
-};
-
 export const user = {
   getAllUsers: () => getRequest('/users/fetch-user-data'),
   addNewUser: (payload: any) => postRequest('/users/create-user-data', payload),
