@@ -72,4 +72,8 @@ export const cart = {
   getCartByDateRange: (startDate: any, endDate: any) => getRequest(`/carts?startdate=${startDate}&enddate=${endDate}`),
 };
 
+export const user = {
+  getAllUsers: () => getRequest('/users/fetch-user-data')
+}
+
 

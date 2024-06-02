@@ -2,11 +2,20 @@
 
 import { setAuthState } from "@/redux/authSlice";
 import { useAppDispatch } from "@/redux/store";
-import React from "react";
+import React, { useState } from "react";
 import Button from '@mui/material/Button';
+import { user } from "@/apis";
 
 const AuthUpdater = () => {
+    const [usersListData, setUsersListData] = useState([])
+
     const dispatch = useAppDispatch();
+
+    const handleGetAllUsers = () => {
+        user.getAllUsers().then((res: any) => {
+            setUsersListData(res.data)
+        })
+    }
 
     return (
         <div className="">
@@ -18,6 +27,14 @@ const AuthUpdater = () => {
                 onClick={() => dispatch(setAuthState(false))}
             >     Log out
             </Button>
+            <Button variant="contained"
+                onClick={() => handleGetAllUsers()}
+            >     Get ALl DAta
+            </Button>
+
+            {usersListData.map((eachCategory: any) => (
+                <div key={eachCategory}>{eachCategory.name}</div>
+            ))}
         </div>
     );
 };
