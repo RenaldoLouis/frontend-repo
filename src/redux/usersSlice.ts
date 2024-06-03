@@ -18,16 +18,22 @@ export const usersSlice = createSlice({
         // Add a single user to the array
         addUser: (state, action: PayloadAction<IUser>) => {
             const user = action.payload;
-            if (!state.find(u => u.id === user.id)) {
+            const existingUserIndex = state.findIndex(u => u.id === user.id);
+            if (existingUserIndex === -1) {
                 state.push(user);
+            } else {
+                state[existingUserIndex] = user;
             }
         },
         // Add multiple users to the array
         addUsers: (state, action: PayloadAction<IUser[]>) => {
             const usersToAdd = action.payload;
             usersToAdd.forEach(user => {
-                if (!state.find(u => u.id === user.id)) {
+                const existingUserIndex = state.findIndex(u => u.id === user.id);
+                if (existingUserIndex === -1) {
                     state.push(user);
+                } else {
+                    state[existingUserIndex] = user;
                 }
             });
         },
